@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">AdaptoAndroid</string>
 
-<!-- LOGIN PAGE -->
-    <string name="login_title">WELCOME TO \nADAPTO</string>
+    <!--  AUTHENTICATION ACTIVITY  -->
+    <string name="auth_title">WELCOME TO \nADAPTO</string>
+    <string name="auth_email">Email</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_register_link">Click here to register</string>
+    <string name="auth_login_link">Click here to login</string>
+
+    <!-- LOGIN FRAGMENT -->
     <string name="login_subtitle">Login to access the platform</string>
-    <string name="login_email">Email</string>
-    <string name="login_password">Password</string>
     <string name="login_button">LOGIN</string>
+
+    <!-- REGISTER FRAGMENT -->
+    <string name="register_subtitle">Register to enter the platform</string>
+    <string name="register_first_name">First name</string>
+    <string name="register_last_name">Last name</string>
+    <string name="register_button">REGISTER</string>
+
 </resources>

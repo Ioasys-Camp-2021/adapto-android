@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.LoginFragment">
+
+    <TextView
+        android:id="@+id/registerSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edtFirstName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_first_name"
+        android:inputType="text"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toTopOf="@id/edtLastName"
+        app:layout_constraintTop_toBottomOf="@id/registerSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:autofillHints="Email" />
+
+    <EditText
+        android:id="@+id/edtLastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/register_last_name"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@id/edtFirstName"
+        app:layout_constraintStart_toStartOf="@id/edtFirstName"
+        app:layout_constraintEnd_toEndOf="@id/edtFirstName"
+        android:autofillHints="Last Name" />
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/auth_email"
+        android:inputType="textEmailAddress"
+        android:layout_margin="32dp"
+        app:layout_constraintBottom_toTopOf="@id/edtPassword"
+        app:layout_constraintTop_toBottomOf="@id/edtLastName"
+        app:layout_constraintStart_toStartOf="@id/edtFirstName"
+        app:layout_constraintEnd_toEndOf="@id/edtFirstName"
+        android:autofillHints="Email" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/auth_password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@id/btnRegister"
+        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintStart_toStartOf="@id/edtFirstName"
+        app:layout_constraintEnd_toEndOf="@id/edtFirstName"
+        android:autofillHints="Password" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edtPassword"
+        app:layout_constraintEnd_toEndOf="@id/edtFirstName"
+        app:layout_constraintStart_toStartOf="@id/edtFirstName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
