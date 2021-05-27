@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 interface UserService {
 
 //    AUTHENTICATION
-    @POST("auth/login")
+    @POST("auth/login/")
     suspend fun login(
             @Body loginRequest: LoginRequest
     ): Response<Unit>
@@ -41,13 +41,14 @@ interface UserService {
     companion object {
         fun newInstance(): UserService = Retrofit.Builder()
                 // UTILIZAR A URL DA API
-                .baseUrl("http://localhost:3001/api/")
+                .baseUrl("https://192.168.15.6:3001/api/")
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(UserService::class.java)
 
         private fun getClient(): OkHttpClient = OkHttpClient.Builder()
                 .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
