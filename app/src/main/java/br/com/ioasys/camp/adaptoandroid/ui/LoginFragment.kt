@@ -15,8 +15,15 @@ import androidx.navigation.fragment.findNavController
 import br.com.ioasys.camp.adaptoandroid.databinding.FragmentLoginBinding
 import br.com.ioasys.camp.adaptoandroid.presentation.LoginViewModel
 import br.com.ioasys.camp.adaptoandroid.presentation.ViewState
+import br.com.ioasys.camp.adaptoandroid.remote.LoginRequest
+import br.com.ioasys.camp.adaptoandroid.remote.UserService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import okhttp3.Headers
+import retrofit2.Response
 
+//@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -29,8 +36,10 @@ class LoginFragment : Fragment() {
     private lateinit var viewLoading: View
     private lateinit var loadingGroup: Group
 
+//    @Inject
     private lateinit var viewModel: LoginViewModel
 
+    private lateinit var service: UserService
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,6 +60,7 @@ class LoginFragment : Fragment() {
         loadingGroup = binding.loadingGroup
 
 //        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(Application())).get(LoginViewModel::class.java)
+        service = UserService.newInstance()
 
         btnRegisterLink.setOnClickListener {
             findNavController().navigate(
@@ -59,10 +69,32 @@ class LoginFragment : Fragment() {
             Toast.makeText(requireContext(), "TESTE AQUI", LENGTH_LONG).show()
         }
 
-//        btnLogin.setOnClickListener {
+        btnLogin.setOnClickListener {
 //            viewModel.login(edtEmail.text.toString(), edtPassword.text.toString())
-//        }
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    Log.d("LoginFragment", "Trying to start request...")
+                    val response = service.login(LoginRequest(
+                            email = edtEmail.text.toString(),
+                            password = edtPassword.text.toString()
+                    ))
+                    Log.d("LoginFragment", "Request done")
+                    handleLogin(response)
+                } catch (e: Exception) {
+                    Log.d("LoginFragment", "Error on login request: $e")
+                    e.printStackTrace()
+                    throw e
+                }
+            }
+        }
 //        setObservers()
+    }
+
+    private fun handleLogin(response: Response<Unit>) {
+        if(response.isSuccessful) {
+            Log.d("LOGIN", "header email ${response.headers().get("email")}")
+            Log.d("LOGIN", "header token ${response.headers().get("token")}")
+        }
     }
 
     private fun setObservers() {

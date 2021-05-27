@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Headers
 
+//@HiltAndroidApp
 class LoginViewModel (
     private val repository: LoginRepository
     ) : ViewModel() {

@@ -12,14 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val loginFragment = LoginFragment()
-//        val registerFragment = RegisterFragment()
-//
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.flAuth, loginFragment)
-//            commit()
-//        }
-//
+        val loginFragment = LoginFragment()
+        val registerFragment = RegisterFragment()
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flAuth, loginFragment)
+            commit()
+        }
+
 //        btnRegisterLink.setOnClickListener {
 //            supportFragmentManager.beginTransaction().apply {
 //                replace(R.id.flAuth, registerFragment)
