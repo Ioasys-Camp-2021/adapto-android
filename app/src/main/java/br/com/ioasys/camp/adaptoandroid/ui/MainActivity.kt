@@ -6,7 +6,6 @@ import br.com.ioasys.camp.adaptoandroid.R
 
 class MainActivity : AppCompatActivity() {
 
-//    private val btnRegisterLink: Button by lazy { findViewById(R.id.btnRegisterLink) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,18 +13,11 @@ class MainActivity : AppCompatActivity() {
 
         val loginFragment = LoginFragment()
         val registerFragment = RegisterFragment()
+        val splashScreenFragment = SplashScreenFragment()
 
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.flAuth, loginFragment)
-            commit()
-        }
-
-//        btnRegisterLink.setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flAuth, registerFragment)
-//                commit()
-//            }
+//        supportFragmentManager.beginTransaction().apply {
+//            replace(R.id.flAuth, splashScreenFragment)
+//            commit()
 //        }
-
     }
 }
