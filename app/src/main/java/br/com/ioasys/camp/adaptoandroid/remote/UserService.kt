@@ -16,7 +16,7 @@ interface UserService {
     @POST("auth/login/")
     suspend fun login(
             @Body loginRequest: LoginRequest
-    ): Response<Unit>
+    ): LoginResponse
 
     @POST("auth/login")
     suspend fun logout(
@@ -41,7 +41,7 @@ interface UserService {
     companion object {
         fun newInstance(): UserService = Retrofit.Builder()
                 // UTILIZAR A URL DA API
-                .baseUrl("https://192.168.15.6:3001/api/")
+                .baseUrl("https://93207225b9ee.ngrok.io/api/")
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(UserService::class.java)

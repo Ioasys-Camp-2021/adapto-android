@@ -16,12 +16,12 @@ import br.com.ioasys.camp.adaptoandroid.databinding.FragmentLoginBinding
 import br.com.ioasys.camp.adaptoandroid.presentation.LoginViewModel
 import br.com.ioasys.camp.adaptoandroid.presentation.ViewState
 import br.com.ioasys.camp.adaptoandroid.remote.LoginRequest
+import br.com.ioasys.camp.adaptoandroid.remote.LoginResponse
 import br.com.ioasys.camp.adaptoandroid.remote.UserService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Headers
-import retrofit2.Response
 
 //@AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -33,7 +33,6 @@ class LoginFragment : Fragment() {
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnRegisterLink: Button
-    private lateinit var viewLoading: View
     private lateinit var loadingGroup: Group
 
 //    @Inject
@@ -56,7 +55,6 @@ class LoginFragment : Fragment() {
         edtEmail = binding.edtEmail
         edtPassword = binding.edtPassword
         btnRegisterLink = binding.btnRegisterLink
-        viewLoading = binding.viewLoading
         loadingGroup = binding.loadingGroup
 
 //        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(Application())).get(LoginViewModel::class.java)
@@ -66,11 +64,11 @@ class LoginFragment : Fragment() {
             findNavController().navigate(
                 LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             )
-            Toast.makeText(requireContext(), "TESTE AQUI", LENGTH_LONG).show()
         }
 
         btnLogin.setOnClickListener {
 //            viewModel.login(edtEmail.text.toString(), edtPassword.text.toString())
+            manageLoadingGroup(true)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     Log.d("LoginFragment", "Trying to start request...")
@@ -79,6 +77,7 @@ class LoginFragment : Fragment() {
                             password = edtPassword.text.toString()
                     ))
                     Log.d("LoginFragment", "Request done")
+
                     handleLogin(response)
                 } catch (e: Exception) {
                     Log.d("LoginFragment", "Error on login request: $e")
@@ -86,14 +85,25 @@ class LoginFragment : Fragment() {
                     throw e
                 }
             }
+            manageLoadingGroup(false)
         }
 //        setObservers()
     }
 
-    private fun handleLogin(response: Response<Unit>) {
-        if(response.isSuccessful) {
-            Log.d("LOGIN", "header email ${response.headers().get("email")}")
-            Log.d("LOGIN", "header token ${response.headers().get("token")}")
+    private fun manageLoadingGroup(show: Boolean) {
+        if(show)
+            this.loadingGroup.visibility = View.VISIBLE
+        else
+            this.loadingGroup.visibility = View.GONE
+    }
+
+    private fun handleLogin(response: LoginResponse) {
+        if(response.token != "") {
+            val email = response.email
+            val token = response.token
+            Log.d("LOGIN", "email: $email")
+            Log.d("LOGIN", "token: $token")
+//            IMPLEMENTAR NAVEGAÇÃO PARA HOME PAGE
         }
     }
 
