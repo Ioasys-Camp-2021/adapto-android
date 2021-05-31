@@ -21,7 +21,7 @@ class SplashScreenFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSplashScreenBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,7 +37,7 @@ class SplashScreenFragment : Fragment() {
 
     private fun navigateToLogin() {
         findNavController().navigate(
-            SplashScreenFragmentDirections.actionSplashScreenFragmentToLoginFragment()
+            SplashScreenFragmentDirections.actionSplashScreenFragmentToOnboardingFragment()
         )
     }
 }
