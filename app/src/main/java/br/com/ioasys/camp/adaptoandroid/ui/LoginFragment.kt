@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var btnLogin: Button
+    private lateinit var btnEntrar: Button
     private lateinit var edtEmail: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnRegisterLink: Button
@@ -51,13 +51,13 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnLogin = binding.btnLogin
+        btnEntrar = binding.btnEntrar
         edtEmail = binding.edtEmail
         edtPassword = binding.edtPassword
         btnRegisterLink = binding.btnRegisterLink
         loadingGroup = binding.loadingGroup
 
-//        viewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory(Application())).get(LoginViewModel::class.java)
+//        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         service = UserService.newInstance()
 
         btnRegisterLink.setOnClickListener {
@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
             )
         }
 
-        btnLogin.setOnClickListener {
+        btnEntrar.setOnClickListener {
 //            viewModel.login(edtEmail.text.toString(), edtPassword.text.toString())
             manageLoadingGroup(true)
             CoroutineScope(Dispatchers.IO).launch {

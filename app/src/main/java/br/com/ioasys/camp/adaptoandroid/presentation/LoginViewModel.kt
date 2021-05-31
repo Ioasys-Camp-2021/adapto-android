@@ -14,7 +14,7 @@ class LoginViewModel (
     val headersLiveData: LiveData<ViewState<Headers>> = _headersLiveData
 
     fun login(email: String, password: String) {
-//        _headersLiveData.value = ViewState.loading(true)
+        _headersLiveData.value = ViewState.loading(true)
 //        viewModelScope.launch(Dispatchers.Main) {
 //            handleLogin(repository.login(email, password))
 //        }
