@@ -4,13 +4,23 @@
     <!--  AUTHENTICATION ACTIVITY  -->
     <string name="auth_title">WELCOME TO \nADAPTO</string>
     <string name="auth_email">Email</string>
-    <string name="auth_password">Password</string>
-    <string name="auth_register_link">Click here to register</string>
-    <string name="auth_login_link">Click here to login</string>
+    <string name="auth_password">Senha</string>
+    <string name="auth_edtEmail">Digite seu email</string>
+    <string name="auth_edtPassword">Digite sua senha</string>
+    <string name="adaptoLogo">Adapto Logo image</string>
+
+    <!-- ONBOARDING FRAGMENT -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tvOnboardingTitle">Apoie a diversidade!</string>
+    <string name="tvOnboardingSubtitle">Como deseja continuar?</string>
+    <string name="btnEntrar">Entrar</string>
+    <string name="btnCadastrar">Criar uma conta</string>
+    <string name="btnPular">Pular essa etapa</string>
 
     <!-- LOGIN FRAGMENT -->
-    <string name="login_subtitle">Login to access the platform</string>
-    <string name="login_button">LOGIN</string>
+    <string name="login_subtitle">Entrar</string>
+    <string name="login_button">Entrar</string>
+    <string name="auth_register_link">Criar minha conta</string>
 
     <!-- REGISTER FRAGMENT -->
     <string name="register_subtitle">Register to enter the platform</string>

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- CARAMELO -->
+    <color name="primaryColor">#FF8F5B28</color>
+    <color name="primaryVariantColor">#FFE2A365</color>
+    <color name="primaryAccentColor">#FFEDCEB3</color>
+    <color name="onPrimaryColor">#FF333333</color>
+
+    <!-- AZUL -->
+    <color name="secondaryColor">#FF153D5B</color>
+    <color name="secondaryVariantColor">#FF2A6089</color>
+    <color name="secondaryAccentColor">#FF98B5CC</color>
+    <color name="onSecondaryColor">#FFFEFEFE</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="invisible">#00000000</color>
 </resources>
