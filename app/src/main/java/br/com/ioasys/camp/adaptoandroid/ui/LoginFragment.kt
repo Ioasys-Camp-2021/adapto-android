@@ -1,5 +1,6 @@
 package br.com.ioasys.camp.adaptoandroid.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,6 +24,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Headers
 
+const val EXTRA_EMAIL = "br.com.ioasys.camp.adaptoandroid.ui.EMAIL"
+const val EXTRA_TOKEN = "br.com.ioasys.camp.adaptoandroid.ui.TOKEN"
 //@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -103,7 +106,12 @@ class LoginFragment : Fragment() {
             val token = response.token
             Log.d("LOGIN", "email: $email")
             Log.d("LOGIN", "token: $token")
-//            IMPLEMENTAR NAVEGAÇÃO PARA HOME PAGE
+
+            val intent = Intent(requireContext(), HomeActivity::class.java).apply {
+                putExtra(EXTRA_EMAIL, email)
+                putExtra(EXTRA_TOKEN, token)
+            }
+            startActivity(intent)
         }
     }
 
