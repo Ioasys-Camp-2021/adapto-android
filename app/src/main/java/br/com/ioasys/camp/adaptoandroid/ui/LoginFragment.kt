@@ -14,8 +14,7 @@ import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import br.com.ioasys.camp.adaptoandroid.databinding.FragmentLoginBinding
-import br.com.ioasys.camp.adaptoandroid.presentation.LoginViewModel
-import br.com.ioasys.camp.adaptoandroid.presentation.ViewState
+import br.com.ioasys.camp.adaptoandroid.presentation.*
 import br.com.ioasys.camp.adaptoandroid.remote.LoginRequest
 import br.com.ioasys.camp.adaptoandroid.remote.LoginResponse
 import br.com.ioasys.camp.adaptoandroid.remote.UserService
@@ -24,8 +23,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.Headers
 
-const val EXTRA_EMAIL = "br.com.ioasys.camp.adaptoandroid.ui.EMAIL"
-const val EXTRA_TOKEN = "br.com.ioasys.camp.adaptoandroid.ui.TOKEN"
 //@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
@@ -62,6 +59,7 @@ class LoginFragment : Fragment() {
 
 //        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         service = UserService.newInstance()
+        manageLoadingGroup(show = false)
 
         btnRegisterLink.setOnClickListener {
             findNavController().navigate(
@@ -71,7 +69,7 @@ class LoginFragment : Fragment() {
 
         btnEntrar.setOnClickListener {
 //            viewModel.login(edtEmail.text.toString(), edtPassword.text.toString())
-            manageLoadingGroup(true)
+            manageLoadingGroup(show = true)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     Log.d("LoginFragment", "Trying to start request...")
@@ -88,30 +86,36 @@ class LoginFragment : Fragment() {
                     throw e
                 }
             }
-            manageLoadingGroup(false)
+            manageLoadingGroup(show = false)
         }
 //        setObservers()
     }
 
     private fun manageLoadingGroup(show: Boolean) {
-        if(show)
-            this.loadingGroup.visibility = View.VISIBLE
-        else
-            this.loadingGroup.visibility = View.GONE
+        loadingGroup.visibility = if (show) View.VISIBLE else View.GONE
+        Toast.makeText(requireContext(), "switching loading group visibility to $show", LENGTH_LONG).show()
     }
 
     private fun handleLogin(response: LoginResponse) {
         if(response.token != "") {
+            val id = response.id
+            val fullName = response.fullName
+            val role = response.role
             val email = response.email
             val token = response.token
             Log.d("LOGIN", "email: $email")
             Log.d("LOGIN", "token: $token")
 
             val intent = Intent(requireContext(), HomeActivity::class.java).apply {
+                putExtra(EXTRA_ID, email)
+                putExtra(EXTRA_FULLNAME, fullName)
+                putExtra(EXTRA_ROLE, role)
                 putExtra(EXTRA_EMAIL, email)
                 putExtra(EXTRA_TOKEN, token)
             }
             startActivity(intent)
+        } else {
+            Log.d("LoginFragment", "login failed")
         }
     }
 

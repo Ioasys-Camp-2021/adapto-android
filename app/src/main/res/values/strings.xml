@@ -28,4 +28,12 @@
     <string name="register_last_name">Sobrenome</string>
     <string name="register_button">Criar conta</string>
 
+    <!-- LOGGED HOME -->
+    <string name="menu_toolbar">Menu Toolbar</string>
+    <string name="home_greetings">Olá!</string>
+    <string name="home_pesquisar">Pesquisar</string>
+    <string name="home_trabalhos">Exposição de trabalhos</string>
+    <string name="home_vagas">Vagas disponíveis</string>
+    <string name="lorem_ipsum">Lorem ipsum</string>
+
 </resources>
