@@ -103,11 +103,11 @@ class LoginFragment : Fragment() {
             val role = response.role
             val email = response.email
             val token = response.token
-            Log.d("LOGIN", "email: $email")
-            Log.d("LOGIN", "token: $token")
+//            Log.d("LOGIN", "email: $email")
+//            Log.d("LOGIN", "token: $token")
 
             val intent = Intent(requireContext(), HomeActivity::class.java).apply {
-                putExtra(EXTRA_ID, email)
+                putExtra(EXTRA_ID, id)
                 putExtra(EXTRA_FULLNAME, fullName)
                 putExtra(EXTRA_ROLE, role)
                 putExtra(EXTRA_EMAIL, email)

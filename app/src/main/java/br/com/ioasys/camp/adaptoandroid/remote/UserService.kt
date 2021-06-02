@@ -41,7 +41,7 @@ interface UserService {
     companion object {
         fun newInstance(): UserService = Retrofit.Builder()
                 // UTILIZAR A URL DA API
-                .baseUrl("https://3b575afeff5f.ngrok.io/api/")
+                .baseUrl("https://adapto-api.herokuapp.com/api/")
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(UserService::class.java)
