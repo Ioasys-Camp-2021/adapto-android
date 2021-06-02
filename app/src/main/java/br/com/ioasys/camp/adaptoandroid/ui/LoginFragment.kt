@@ -70,30 +70,38 @@ class LoginFragment : Fragment() {
         btnEntrar.setOnClickListener {
 //            viewModel.login(edtEmail.text.toString(), edtPassword.text.toString())
             manageLoadingGroup(show = true)
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    Log.d("LoginFragment", "Trying to start request...")
-                    val response = service.login(LoginRequest(
-                            email = edtEmail.text.toString(),
-                            password = edtPassword.text.toString()
-                    ))
-                    Log.d("LoginFragment", "Request done")
+            if(validateFields(edtEmail.text.toString(), edtPassword.text.toString())) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    try {
+                        Log.d("LoginFragment", "Trying to start request...")
+                        val response = service.login(LoginRequest(
+                                email = edtEmail.text.toString(),
+                                password = edtPassword.text.toString()
+                        ))
+                        Log.d("LoginFragment", "Request done")
 
-                    handleLogin(response)
-                } catch (e: Exception) {
-                    Log.d("LoginFragment", "Error on login request: $e")
-                    e.printStackTrace()
-                    throw e
+                        handleLogin(response)
+                    } catch (e: Exception) {
+                        Log.d("LoginFragment", "Error on login request: $e")
+                        e.printStackTrace()
+                        throw e
+                    }
                 }
+            } else {
+                Toast.makeText(requireContext(), "Por favor preencha os campos de email e senha", LENGTH_LONG).show()
             }
             manageLoadingGroup(show = false)
         }
 //        setObservers()
     }
 
+    private fun validateFields(email: String, password: String): Boolean {
+        return email != "" && password != ""
+    }
+
     private fun manageLoadingGroup(show: Boolean) {
         loadingGroup.visibility = if (show) View.VISIBLE else View.GONE
-        Toast.makeText(requireContext(), "switching loading group visibility to $show", LENGTH_LONG).show()
+//        Toast.makeText(requireContext(), "switching loading group visibility to $show", LENGTH_LONG).show()
     }
 
     private fun handleLogin(response: LoginResponse) {
