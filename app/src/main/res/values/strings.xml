@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AdaptoAndroid</string>
+    <string name="app_name">Adapto</string>
 
     <!--  AUTHENTICATION ACTIVITY  -->
     <string name="auth_title">WELCOME TO \nADAPTO</string>
@@ -35,5 +35,13 @@
     <string name="home_trabalhos">Exposição de trabalhos</string>
     <string name="home_vagas">Vagas disponíveis</string>
     <string name="lorem_ipsum">Lorem ipsum</string>
+
+    <!-- DRAWER MENU -->
+    <string name="menu_home">HOME</string>
+    <string name="menu_perfil">PERFIL</string>
+    <string name="menu_vagas">VAGAS</string>
+    <string name="menu_sair">SAIR</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>
